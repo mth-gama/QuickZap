@@ -5,15 +5,13 @@ import pandas as pd
 import threading
 
 import sqlite3
-# import datetime 
-# from datetime import datetime
 from datetime import datetime
 
 class BotZap:
     def __init__(self):
         
         self.list_contatos = ['+351911172781']
-
+        st.sidebar.image('imgs\QuickZAP.png')
         self.itens_pag()
 
     def itens_pag(self):
@@ -21,13 +19,6 @@ class BotZap:
         menssagem = st.text_area('Qual a messagem que desja enviar:')
         
         if st.checkbox('Deseja agendar?'):
-            # agora = datetime.now()
-            
-            # dia_atual = agora.day
-            # horas = agora.hour
-            # minuto_atual = agora.minute + 1
-            # segundo_atual = agora.second
-            
             selected_time = st.time_input("Selecione um horário: ")
             
             if st.button('Iniciar'):
@@ -46,13 +37,13 @@ class BotZap:
         for i in range(0,2):
             agora = datetime.now()
             
-            dia_atual = agora.day
+            dia_atual = f'{agora.day}/{agora.month}/{agora.year}'
             horas = agora.hour
             minuto_atual = agora.minute + 1
             segundo_atual = agora.second
             
             print(f'Menssagem para {self.list_contatos[0]} às {horas}:{minuto_atual}:{segundo_atual} do dia {dia_atual}')
-
+            
             try:
                 st.toast(f'Enviando messagem para {self.list_contatos[0]}')
                 # pt.sendwhatmsg(i, menssagem, horas, minuto_atual)
@@ -71,7 +62,7 @@ class BotZap:
         for i in range(0,2):
             agora = datetime.now()
             
-            dia_atual = agora.day
+            dia_atual = f'{agora.day}/{agora.month}/{agora.year}'
             
             print(f'Menssagem para {self.list_contatos[0]} agendada às {horas}:{minutos}:{segundos} do dia {dia_atual}')
 
